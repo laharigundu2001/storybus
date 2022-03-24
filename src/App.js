@@ -1,25 +1,42 @@
-import logo from './logo.svg';
 import './App.css';
+import Login from './components/Login';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import {
+  BrowserRouter, Routes, Route, Navigate
+} from 'react-router-dom';
+import React, { Component } from 'react';
+import Unauthorised from './components/Unauthorised';
+import Home from './components/Home';
+
+import { BrowserRouter as Router  } from 'react-router-dom';
+
+//import { Redirect } from 'react-router';
+
+
+const loggedIn = true;
+
+class App extends Component {
+
+  render() {
+    return (
+      <Routes>
+          <Route exact path="/" element={<Login/>}/>
+          <Route exact path="/Unauthorised" element={<Unauthorised/>}/>
+          {/* <Route exact path="/Home" render={() =>(
+            console.log(loggedIn),
+          loggedIn ? <Route path="/Unauthorised" element= { <Navigate replace to = "/Unauthorised"/>}/>
+          : (<Navigate replace to="/Home" />)
+        )} /> */}
+        {/* <Route exact path="/Home">
+  {loggedIn ? <Navigate to="/Unauthorised" /> : <Home />}
+</Route>  */}
+
+
+ 
+     <Route exact path="/Home" element={<Home/>}/>
+      </Routes>
+    );
+  }
 }
 
 export default App;
